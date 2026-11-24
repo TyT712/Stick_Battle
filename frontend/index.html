@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stick-Battle (PvC)</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header thông tin màn chơi -->
+        <header class="game-header">
+            <h1>STICK-BATTLE</h1>
+            <div id="stage-info">Màn chơi: <span id="current-stage">1</span></div>
+        </header>
+
+        <!-- Sân đấu 1v1 -->
+        <main class="battle-arena">
+            <!-- Nhân vật Người chơi (Kiếm Sĩ Cầm Kiếm) -->
+            <div class="fighter-box player-box">
+                <div class="fighter-name" id="player-name">Kiếm Sĩ (Bạn)</div>
+                <div class="stat-bar hp-bar-wrap">
+                    <div class="stat-fill hp-fill" id="player-hp-fill" style="width: 100%;"></div>
+                    <span class="stat-text" id="player-hp-text">120 / 120 HP</span>
+                </div>
+                <div class="stat-bar mp-bar-wrap">
+                    <div class="stat-fill mp-fill" id="player-mp-fill" style="width: 100%;"></div>
+                    <span class="stat-text" id="player-mp-text">50 / 50 MP</span>
+                </div>
+
+                <!-- SVG Kiếm Sĩ Cầm Kiếm -->
+                <div class="stickman-avatar player-avatar">
+                    <svg width="140" height="170" viewBox="0 0 140 170">
+                        <!-- Đầu -->
+                        <circle cx="60" cy="35" r="18" stroke="#ffffff" stroke-width="4" fill="#16213e"/>
+                        <circle cx="65" cy="32" r="3" fill="#00d2ff"/> <!-- Mắt phát sáng -->
+                        <!-- Thân -->
+                        <line x1="60" y1="53" x2="60" y2="105" stroke="#ffffff" stroke-width="4"/>
+                        <!-- Chân -->
+                        <line x1="60" y1="105" x2="35" y2="150" stroke="#ffffff" stroke-width="4"/>
+                        <line x1="60" y1="105" x2="85" y2="150" stroke="#ffffff" stroke-width="4"/>
+                        <!-- Tay trái (thủ) -->
+                        <line x1="60" y1="70" x2="30" y2="85" stroke="#ffffff" stroke-width="4"/>
+                        <!-- Tay phải cầm kiếm -->
+                        <line x1="60" y1="70" x2="90" y2="60" stroke="#ffffff" stroke-width="4"/>
+                        
+                        <!-- Thanh Kiếm -->
+                        <line x1="88" y1="67" x2="92" y2="53" stroke="#f39c12" stroke-width="5"/>
+                        <line x1="82" y1="63" x2="98" y2="57" stroke="#e67e22" stroke-width="4"/>
+                        <polygon points="90,60 135,20 128,15 88,58" fill="#00d2ff" stroke="#ffffff" stroke-width="1.5"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="vs-badge">VS</div>
+
+            <!-- Nhân vật Máy (Quái Thú Ghê Tợn) -->
+            <div class="fighter-box bot-box">
+                <div class="fighter-name" id="bot-name">Quái Ác Ma (Máy)</div>
+                <div class="stat-bar hp-bar-wrap">
+                    <div class="stat-fill hp-fill" id="bot-hp-fill" style="width: 100%;"></div>
+                    <span class="stat-text" id="bot-hp-text">75 / 75 HP</span>
+                </div>
+                <div class="stat-bar mp-bar-wrap">
+                    <div class="stat-fill mp-fill" id="bot-mp-fill" style="width: 100%;"></div>
+                    <span class="stat-text" id="bot-mp-text">40 / 40 MP</span>
+                </div>
+
+                <!-- SVG Quái Thú Ghê Tợn -->
+                <div class="stickman-avatar monster-avatar">
+                    <svg width="150" height="170" viewBox="0 0 150 170">
+                        <!-- Sừng nhọn quái thú -->
+                        <polygon points="45,35 25,5 55,25" fill="#e74c3c" stroke="#8e44ad" stroke-width="2"/>
+                        <polygon points="105,35 125,5 95,25" fill="#e74c3c" stroke="#8e44ad" stroke-width="2"/>
+                        
+                        <!-- Thân hình dị dạng độc hại -->
+                        <path d="M 40 40 Q 75 15 110 40 Q 135 80 115 120 Q 75 155 35 120 Q 15 80 40 40 Z" fill="#2c3e50" stroke="#c0392b" stroke-width="4"/>
+                        
+                        <!-- Gai nhọn sau lưng -->
+                        <polygon points="25,60 10,65 22,75" fill="#e74c3c"/>
+                        <polygon points="20,85 5,90 18,100" fill="#e74c3c"/>
+                        
+                        <!-- Đôi mắt đỏ rực hung tợn -->
+                        <ellipse cx="55" cy="55" rx="8" ry="12" fill="#ff0033"/>
+                        <ellipse cx="95" cy="55" rx="8" ry="12" fill="#ff0033"/>
+                        <ellipse cx="57" cy="55" rx="2" ry="8" fill="#ffff00"/>
+                        <ellipse cx="93" cy="55" rx="2" ry="8" fill="#ffff00"/>
+                        
+                        <!-- Miệng rộng & Răng nanh sắc nhọn -->
+                        <path d="M 45 85 Q 75 110 105 85 Q 75 125 45 85 Z" fill="#111111" stroke="#e74c3c" stroke-width="2"/>
+                        <polygon points="52,87 58,102 64,88" fill="#ffffff"/>
+                        <polygon points="86,88 92,102 98,87" fill="#ffffff"/>
+                        <polygon points="70,110 75,98 80,110" fill="#ffffff"/>
+
+                        <!-- Móng vuốt hung hãn -->
+                        <path d="M 30 90 L 10 110 L 5 105" stroke="#e74c3c" stroke-width="4" fill="none"/>
+                        <path d="M 120 90 L 140 110 L 145 105" stroke="#e74c3c" stroke-width="4" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+        </main>
+
+        <!-- Cụm 4 nút hành động đầy đủ -->
+        <footer class="action-controls">
+            <button class="btn btn-attack" id="btn-attack">Đánh thường (+10 MP)</button>
+            <button class="btn btn-skill" id="btn-skill">Kỹ năng (Chém Xoáy)</button>
+            <button class="btn btn-defend" id="btn-defend">Phòng thủ (+20 MP)</button>
+            <button class="btn btn-heal" id="btn-heal">Hồi máu (Bình: <span id="potion-count">1</span>)</button>
+        </footer>
+    </div>
+</body>
+</html>
