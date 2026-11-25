@@ -146,5 +146,5 @@ stick-battle/
     │   └── main.js            # Bắt sự kiện click và điều phối game
     └── assets/                # Hình ảnh / SVG nhân vật Stickman, âm thanh
 ```
-
+## 5.Quy trình làm việc
 ---
