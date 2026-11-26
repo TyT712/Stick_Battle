@@ -3,12 +3,21 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Stick Battle API")
 
+# Địa chỉ frontend (Live Server) được phép gọi API
+FRONTEND_ORIGINS = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
+
+# Các phương thức HTTP mà API sử dụng
+ALLOWED_METHODS = ["GET", "POST"]
+
 # Cấu hình CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=FRONTEND_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=ALLOWED_METHODS,
     allow_headers=["*"],
 )
 
