@@ -24,3 +24,8 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "Stick Battle API is running"}
+
+
+@app.get("/api/health", tags=["System"])
+def health_check():
+    return {"status": "ok", "service": "Stick Battle API"}
